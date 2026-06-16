@@ -31,9 +31,13 @@ public class Utilisateur {
     private String telephone;
 
     @Column(name = "PASSWPORD", nullable = false, length = 68)
-    private String mostDePasse;
+    private String motDePasse;
 
-    private Integer credit;
+    private int credit;
 
-    private Boolean admin;
+    private boolean admin;
+
+    @ManyToOne
+    @JoinColumn(name = "adresse_id")
+    private Adresse adresse;
 }

@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,18 +21,31 @@ public class ArticleAVendre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "NAME", nullable = false, length = 90)
+    @Column(name = "NAME", nullable = false)
     private String nom;
 
+    @Column(length = 1000)
     private String description;
 
     private LocalDate dateDebutEncheres;
     private LocalDate dateFinEncheres;
-    private Integer statut;
-    private Integer prixInitial;
-    private Integer prixVente;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JoinColumn(name = "CATEGORY_ID")
+    private int statut;
+    private int prixInitial;
+    private int prixVente;
+
+    @ManyToOne
+    @JoinColumn(name = "vendeur_pseudo")
+    private Utilisateur vendeur;
+
+    @ManyToOne
+    @JoinColumn(name = "adresse_retrait_id")
+    private Adresse retrait;
+
+    @ManyToOne
+    @JoinColumn(name = "categorie_id")
     private Categorie categorie;
+
+    @OneToMany(mappedBy = "articleAVendre", cascade = CascadeType.ALL)
+    private List<Enchere> encheres = new ArrayList<>();
 }

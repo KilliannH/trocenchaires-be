@@ -1,9 +1,6 @@
 package com.killiann.trocenchaires.bo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,5 +22,13 @@ public class Enchere {
 
     private LocalDateTime date;
 
-    private Integer montant;
+    private int montant;
+
+    @ManyToOne
+    @JoinColumn(name = "acquereur_pseudo")
+    private Utilisateur acquereur;
+
+    @ManyToOne
+    @JoinColumn(name = "article_id")
+    private ArticleAVendre articleAVendre;
 }
