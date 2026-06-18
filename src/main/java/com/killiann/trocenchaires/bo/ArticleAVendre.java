@@ -33,6 +33,7 @@ public class ArticleAVendre {
     private int statut;
     private int prixInitial;
     private int prixVente;
+    private String imageUrl;
 
     @ManyToOne
     @JoinColumn(name = "vendeur_pseudo")

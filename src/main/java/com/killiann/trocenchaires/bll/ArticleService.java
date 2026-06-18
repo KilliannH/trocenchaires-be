@@ -74,6 +74,12 @@ public class ArticleService {
         return articleRepo.save(article);
     }
 
+    public void updateImageUrl(Long id, String imageUrl) {
+        ArticleAVendre article = findById(id);
+        article.setImageUrl(imageUrl);
+        articleRepo.save(article);
+    }
+
     public void delete(Long id, String pseudo) {
         ArticleAVendre article = findById(id);
         if (!article.getVendeur().getPseudo().equals(pseudo)) {
