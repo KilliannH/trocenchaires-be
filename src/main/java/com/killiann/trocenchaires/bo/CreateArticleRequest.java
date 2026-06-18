@@ -8,6 +8,5 @@ public record CreateArticleRequest(
         LocalDate dateDebutEncheres,
         LocalDate dateFinEncheres,
         int prixInitial,
-        Long categorieId,
-        Long adresseRetraitId
+        Long categorieId
 ) {}

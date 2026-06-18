@@ -42,20 +42,17 @@ public class ArticleService {
         Categorie categorie = categorieRepo.findById(req.categorieId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Catégorie introuvable"));
 
-        Adresse retrait = adresseRepo.findById(req.adresseRetraitId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Adresse introuvable"));
-
         ArticleAVendre article = ArticleAVendre.builder()
                 .nom(req.nom())
                 .description(req.description())
                 .dateDebutEncheres(req.dateDebutEncheres())
                 .dateFinEncheres(req.dateFinEncheres())
                 .prixInitial(req.prixInitial())
-                .prixVente(req.prixInitial()) // prix de vente courant = prix initial au départ
-                .statut(0) // 0 = en attente
+                .prixVente(req.prixInitial())
+                .statut(0)
                 .vendeur(vendeur)
                 .categorie(categorie)
-                .retrait(retrait)
+                .retrait(vendeur.getAdresse()) // ← adresse du vendeur directement
                 .build();
 
         return articleRepo.save(article);
