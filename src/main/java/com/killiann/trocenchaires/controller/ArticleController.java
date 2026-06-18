@@ -2,6 +2,7 @@ package com.killiann.trocenchaires.controller;
 
 import com.killiann.trocenchaires.bo.ArticleAVendre;
 import com.killiann.trocenchaires.bll.ArticleService;
+import com.killiann.trocenchaires.bo.CreateArticleRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
